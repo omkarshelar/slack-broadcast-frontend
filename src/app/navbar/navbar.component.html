@@ -1,0 +1,18 @@
+<nav>
+  <div class="nav-wrapper navbar">
+    <a class="brand-logo logo">Slack Broadcast</a>
+    <a data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li *ngIf="!user"><a (click)="loginRedirect()">Login</a></li>
+      <ng-container *ngIf="user">
+        <li>Hi {{user.attributes.name}}!</li>
+        <li class="logout" (click)="logout()">Logout!</li>
+      </ng-container>
+    </ul>
+  </div>
+</nav>
+<ul class="sidenav" id="mobile-nav">
+  <li><a>Sass</a></li>
+  <li><a>Components</a></li>
+  <li><a>JavaScript</a></li>
+</ul>

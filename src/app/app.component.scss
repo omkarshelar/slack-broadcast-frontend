@@ -1,0 +1,10 @@
+.container{
+            width: 100%;
+            max-width:initial;
+            > .row{
+                margin: 0;
+                > .col{
+                    padding: 0;
+                }
+            }
+        }

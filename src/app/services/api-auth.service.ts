@@ -1,17 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Auth } from 'aws-amplify';
+import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable({
   providedIn: 'root'
 })
-// export class ApiAuthService implements HttpInterceptor {
+export class ApiAuthService implements HttpInterceptor {
 
-//   constructor() { }
-//   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-//     const modifiedRequest = req.clone()
-//     return
-//   }
-// }
-
-export class ApiAuthService { }
+  constructor() { }
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log("In Interceptor")
+    return this.getIDToken().mergeMap((data) => {
+        console.log("IDTOKEN--->"+data['idToken']['jwtToken']);
+        let newHeaders = req.headers;
+        newHeaders = newHeaders.append("Authorization", "Bearer " + data['idToken']['jwtToken']);
+        const authReq = req.clone({headers: newHeaders});
+        return next.handle(authReq);
+    })
+  }
+  
+    getIDToken() {
+    return Observable.fromPromise(Auth.currentSession())
+  }
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GetChannelsService } from '../services/get-channels.service';
+import { channel } from '../channels-interface'
+import { ChannelManagerService } from '../services/channel-manager.service';
 
 @Component({
   selector: 'app-list-channels',
@@ -7,12 +8,20 @@ import { GetChannelsService } from '../services/get-channels.service';
   styleUrls: ['./list-channels.component.scss']
 })
 export class ListChannelsComponent implements OnInit {
-
-  constructor(private getChannels: GetChannelsService) {
-    this.getChannels.getChannels()
+  
+  channels:channel[];
+  constructor(private channelManager: ChannelManagerService) {
   }
 
   ngOnInit() {
+    this.getChannels();
   }
-
+  
+  getChannels() {
+    this.channelManager.getChannels().then((data) => {
+      this.channels = data['channels'];
+      console.log(data);
+    });
+  }
+  
 }

@@ -1,0 +1,21 @@
+<div class="container edit-channel-container">
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="channelName" type="text" class="validate">
+          <label for="channelName" [formControl]="channelName">Channel Name : </label>
+        </div>
+      </div>
+      <div class="row">
+          <div class="input-field col s12">
+          <input id="channelHook" type="text" class="validate">
+          <label for="channelHook" [formControl]="channelWebhook">Channel Webhook : </label>
+        </div>
+      </div>
+      <div class="row" (click)="addChannel()">
+          <button type="button" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Channel</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   client_id: "1mj8ho879f5nm4go2r27240h7r",
-  redirect_uri: "http://localhost:4200/",
+  redirect_uri: "https://b60bb113c5104bcc8b8aca2f9ba595d3.vfs.cloud9.ap-south-1.amazonaws.com/",
   oauth_uri: "https://omkarshelar-sso.auth.ap-south-1.amazoncognito.com"
 };
 

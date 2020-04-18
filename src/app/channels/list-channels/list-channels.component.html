@@ -1,1 +1,25 @@
-<p>list-channels works!</p>
+<div class="table-wrapper">
+    <table class="highlight striped responsive-table centered">
+        <thead>
+          <tr>
+              <th>Sr. No.</th>
+              <th>Channel Name</th>
+              <th>Channel Webhook</th>
+              <th colspan=2>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let channel of channels;let i = index">
+            <td>{{ i+1 }}</td>
+            <td>{{ channel.channelName }}</td>
+            <td>{{ channel.channelWebhook }}</td>
+            <td>
+                <div class="action-icon"><i class="material-icons">edit</i></div>
+            </td>
+            <td>
+               <div class="action-icon"><i class="material-icons">delete</i></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

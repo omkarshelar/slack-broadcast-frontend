@@ -11,7 +11,6 @@ export class AuthService {
     const listener = (data) => {
       switch (data.payload.event) {
         case 'signIn':
-          console.log("User logged in");
           this.getUser();
           break;
       }

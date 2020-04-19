@@ -12,9 +12,7 @@ export class ApiAuthService implements HttpInterceptor {
 
   constructor() { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("In Interceptor")
     return this.getIDToken().mergeMap((data) => {
-        console.log("IDTOKEN--->"+data['idToken']['jwtToken']);
         let newHeaders = req.headers;
         newHeaders = newHeaders.append("Authorization", "Bearer " + data['idToken']['jwtToken']);
         const authReq = req.clone({headers: newHeaders});

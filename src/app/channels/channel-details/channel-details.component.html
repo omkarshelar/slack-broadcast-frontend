@@ -1,23 +1,23 @@
 <div class="container edit-channel-container">
-  <div>
+  <div class="back-btn">
     <button class="btn" (click)="goBack()"><i class="material-icons left">arrow_back</i>Back</button>
   </div>
   <div class="row">
-    <form class="col s12" [formGroup]="channelForm">
+    <form class="col s12" [formGroup]="channelForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="input-field col s12">
           <input id="channelName" type="text" class="validate" formControlName="channelName">
-          <label for="channelName">Channel Name : </label>
+          <label for="channelName" [ngClass]="{'active':channel}">Channel Name : </label>
         </div>
       </div>
       <div class="row">
           <div class="input-field col s12">
           <input id="channelHook" type="text" class="validate" formControlName="channelWebhook">
-          <label for="channelHook">Channel Webhook : </label>
+          <label for="channelHook" [ngClass]="{'active':channel}">Channel Webhook : </label>
         </div>
       </div>
-      <div class="row" (click)="addChannel()">
-          <button type="button" class="waves-effect waves-light btn" [disabled]="!channelForm.valid"><i class="material-icons left">add</i>{{buttonName}} Channel</button>
+      <div class="row">
+          <button type="submit" class="waves-effect waves-light btn" [disabled]="!channelForm.valid"><i class="material-icons left">{{logoName}}</i>{{buttonName}} Channel</button>
       </div>
     </form>
   </div>

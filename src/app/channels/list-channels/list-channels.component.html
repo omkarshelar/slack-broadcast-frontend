@@ -1,5 +1,5 @@
 <div class="table-wrapper">
-    <table class="highlight striped responsive-table centered">
+    <table class="highlight striped centered" *ngIf="channels">
         <thead>
           <tr>
               <th>Sr. No.</th>
@@ -12,15 +12,17 @@
           <tr *ngFor="let channel of channels;let i = index">
             <td>{{ i+1 }}</td>
             <td>{{ channel.channelName }}</td>
-            <td>{{ channel.channelWebhook }}</td>
+            <td class="table-fix-width">{{ channel.channelWebhook }}</td>
             <td>
-                <div class="action-icon" [routerLink]="['edit', channel.channelId]"><i class="material-icons">edit</i></div>
+                <div class="action-icon" title="Edit" [routerLink]="['edit', channel.channelId]"><i class="material-icons">edit</i></div>
             </td>
             <td (click)="deleteChannel(channel.channelId)">
-               <div class="action-icon"><i class="material-icons">delete</i></div>
+               <div class="action-icon" title="Delete"><i class="material-icons">delete</i></div>
             </td>
           </tr>
         </tbody>
       </table>
 </div>
-<a class="btn-floating btn-large waves-effect waves-light red" [routerLink]="['new']"><i class="material-icons">add</i></a>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-light red" [routerLink]="['new']"><i class="material-icons">add</i></a>
+</div>

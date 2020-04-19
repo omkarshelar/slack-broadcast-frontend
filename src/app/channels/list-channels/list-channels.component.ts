@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ChannelManagerService } from '../services/channel-manager.service';
+import * as M from 'materialize-css'
 
 @Component({
   selector: 'app-list-channels',
   templateUrl: './list-channels.component.html',
   styleUrls: ['./list-channels.component.scss']
 })
-export class ListChannelsComponent implements OnInit {
+export class ListChannelsComponent implements OnInit, AfterViewInit {
   
   channels;
   constructor(private channelManager: ChannelManagerService) {
+  }
+  
+  ngAfterViewInit(): void {
+    // Floating Button initialization
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems);
+    });
   }
 
   ngOnInit() {
@@ -25,9 +34,11 @@ export class ListChannelsComponent implements OnInit {
   }
   
   deleteChannel(channelId) {
-    console.log(channelId);
-    this.channelManager.deleteChannel(channelId);
-    this.getChannels();
+    if(confirm("Are you sure you want to delete this channel?")) {
+      this.channelManager.deleteChannel(channelId);
+      this.getChannels();
+    }
+    
   }
   
 }

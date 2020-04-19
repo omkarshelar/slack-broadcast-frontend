@@ -44,20 +44,22 @@ export class ChannelManagerService {
     const options = {
       body: {
         channelId
-      }
+      },
+      observe: 'response' as 'response'
     };
     
-    this.http.request('delete', 'https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels', options).subscribe((res) => {
-      console.log(res)
+    this.http.request('delete', 'https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels', options).subscribe((response) => {
     });
   }
   
-  async editChannel(channelId) {
-    let channels;
-    if(!this.channels) {
-      channels = await this.getChannels();
-    }
-    filteredChannels = channels.find((channel) => channel['channelId'] === channelId)
-    console.log(filteredChannels);
+  editChannel(newChannel) {
+    this.http.put("https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels", newChannel,{observe: "response"}).subscribe(response => {
+      if(response.status === 200) {
+        this.router.navigate(['/channels']);
+      }
+      else {
+        console.error(response)
+      }
+    })
   }
 }

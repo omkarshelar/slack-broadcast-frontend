@@ -3,4 +3,15 @@
 }
 .action-icon {
     padding: 0 1rem;
+    outline: none;
 }
+.action-icon:hover {
+    cursor: pointer;
+}
+.add-button {
+    margin-left: auto;
+}
+.table-fix-width {
+    max-width: 30%;
+}
+

@@ -12,11 +12,13 @@ html {
   line-height: 1.125; // Base line height - 18px
 }
 
-@import "~@aws-amplify/ui/src/Theme.css";
-.amplify-block {
-  @import "~@aws-amplify/ui/src/Angular";
+@import '~ngx-toastr/toastr';
 
-  .amplify-container {
-    padding-bottom: 2em;
-  }
-}
+// @import "~@aws-amplify/ui/src/Theme.css";
+// .amplify-block {
+//   @import "~@aws-amplify/ui/src/Angular";
+
+//   .amplify-container {
+//     padding-bottom: 2em;
+//   }
+// }

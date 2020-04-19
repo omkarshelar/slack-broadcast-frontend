@@ -1,10 +1,10 @@
 <div class="table-wrapper">
-    <table class="highlight striped centered" *ngIf="channels">
+    <table class="highlight striped responsive-table centered" *ngIf="channels">
         <thead>
           <tr>
               <th>Sr. No.</th>
               <th>Channel Name</th>
-              <th>Channel Webhook</th>
+              <th class="webhook-th">Channel Webhook</th>
               <th colspan=2>Actions</th>
           </tr>
         </thead>
@@ -23,6 +23,12 @@
         </tbody>
       </table>
 </div>
+
+<div *ngIf="!channels && errorMessage" class="container">
+    <h5>
+        {{ errorMessage }}
+    </h5>
+</div>
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light red" [routerLink]="['new']"><i class="material-icons">add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light red" [ngClass]="{'pulse':!channels}" [routerLink]="['new']"><i class="material-icons">add</i></a>
 </div>

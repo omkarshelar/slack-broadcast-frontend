@@ -12,6 +12,25 @@
     margin-left: auto;
 }
 .table-fix-width {
-    max-width: 30%;
+    width: 35%;
+    white-space: normal;
 }
-
+th {
+    font-weight: 500;
+}
+@media only screen and (max-width: 992px) {
+    tr td {
+        width: auto;
+        max-width: 300px;
+    }
+    th {
+        height: auto;
+    }
+    .webhook-th {
+        height: 84px;
+    }
+    .table-wrapper {
+        margin: 0;
+        margin: 3rem 5px;
+    }
+}

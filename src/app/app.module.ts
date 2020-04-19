@@ -9,10 +9,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ApiAuthService } from './services/api-auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, BrowserAnimationsModule,
+  ToastrModule.forRoot({
+    timeOut: 5000,
+    positionClass: 'toast-bottom-right',
+    preventDuplicates: true,
+  })],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiAuthService, multi: true }
     ],

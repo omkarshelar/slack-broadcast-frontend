@@ -10,6 +10,7 @@ import * as M from 'materialize-css'
 export class ListChannelsComponent implements OnInit, AfterViewInit {
   
   channels;
+  errorMessage = null;
   constructor(private channelManager: ChannelManagerService) {
   }
   
@@ -25,12 +26,18 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
     this.getChannels();
   }
   
-  async getChannels() {
-    this.channels = await this.channelManager.getChannels();
-    // .then((response) => {
-    //   this.channels = response.body['channels'];
-    //   console.log(this.channels);
-    // });
+  getChannels() {
+    this.channelManager.getChannels()
+    .then((response) => {
+      if(response.status === 200) {
+        this.channels = response.body['channels'];
+        console.log(this.channels);
+      }
+    })
+    .catch((err) => {
+      this.errorMessage = `🤷  ${err.error['message']}`;
+      this.channels = null;
+    });
   }
   
   deleteChannel(channelId) {
@@ -38,7 +45,5 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
       this.channelManager.deleteChannel(channelId);
       this.getChannels();
     }
-    
   }
-  
 }

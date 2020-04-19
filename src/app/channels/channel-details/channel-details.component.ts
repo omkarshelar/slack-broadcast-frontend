@@ -31,7 +31,7 @@ export class ChannelDetailsComponent implements OnInit {
       // console.log("Edit Mode");
       this.buttonName = "Edit";
       this.logoName = "edit"
-      from(this.channelManager.getChannels()).subscribe((channels) => {
+      from(this.channelManager.getChannelsArray()).subscribe((channels) => {
         this.channel = channels.find((channel:channel) => channel.channelId === this.channelId);
         this.channelForm.setValue({
           channelName: this.channel.channelName,

@@ -13,13 +13,13 @@ export class ChannelManagerService {
   constructor(private http: HttpClient, private router: Router) {
   }
   
-  async getChannels() {
-    const response = await this.loadChannels();
+  async getChannelsArray() {
+    const response = await this.getChannels();
     this.channels = response.body['channels'];
     return this.channels
   }
   
-  loadChannels() {
+  getChannels() {
     return this.http.get('https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels', { observe: 'response' }).toPromise();
   }
   

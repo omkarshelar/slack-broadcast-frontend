@@ -1,20 +1,23 @@
 <div class="container edit-channel-container">
+  <div>
+    <button class="btn" (click)="goBack()"><i class="material-icons left">arrow_back</i>Back</button>
+  </div>
   <div class="row">
-    <form class="col s12">
+    <form class="col s12" [formGroup]="channelForm">
       <div class="row">
         <div class="input-field col s12">
-          <input id="channelName" type="text" class="validate">
-          <label for="channelName" [formControl]="channelName">Channel Name : </label>
+          <input id="channelName" type="text" class="validate" formControlName="channelName">
+          <label for="channelName">Channel Name : </label>
         </div>
       </div>
       <div class="row">
           <div class="input-field col s12">
-          <input id="channelHook" type="text" class="validate">
-          <label for="channelHook" [formControl]="channelWebhook">Channel Webhook : </label>
+          <input id="channelHook" type="text" class="validate" formControlName="channelWebhook">
+          <label for="channelHook">Channel Webhook : </label>
         </div>
       </div>
       <div class="row" (click)="addChannel()">
-          <button type="button" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Channel</button>
+          <button type="button" class="waves-effect waves-light btn" [disabled]="!channelForm.valid"><i class="material-icons left">add</i>{{buttonName}} Channel</button>
       </div>
     </form>
   </div>

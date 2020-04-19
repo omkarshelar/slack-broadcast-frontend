@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { channel } from '../channels-interface'
 import { ChannelManagerService } from '../services/channel-manager.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { ChannelManagerService } from '../services/channel-manager.service';
 })
 export class ListChannelsComponent implements OnInit {
   
-  channels:channel[];
+  channels;
   constructor(private channelManager: ChannelManagerService) {
   }
 
@@ -17,11 +16,18 @@ export class ListChannelsComponent implements OnInit {
     this.getChannels();
   }
   
-  getChannels() {
-    this.channelManager.getChannels().then((data) => {
-      this.channels = data['channels'];
-      console.log(data);
-    });
+  async getChannels() {
+    this.channels = await this.channelManager.getChannels();
+    // .then((response) => {
+    //   this.channels = response.body['channels'];
+    //   console.log(this.channels);
+    // });
+  }
+  
+  deleteChannel(channelId) {
+    console.log(channelId);
+    this.channelManager.deleteChannel(channelId);
+    this.getChannels();
   }
   
 }

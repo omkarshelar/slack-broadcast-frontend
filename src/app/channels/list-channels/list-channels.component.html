@@ -14,12 +14,13 @@
             <td>{{ channel.channelName }}</td>
             <td>{{ channel.channelWebhook }}</td>
             <td>
-                <div class="action-icon"><i class="material-icons">edit</i></div>
+                <div class="action-icon" [routerLink]="['edit', channel.channelId]"><i class="material-icons">edit</i></div>
             </td>
-            <td>
+            <td (click)="deleteChannel(channel.channelId)">
                <div class="action-icon"><i class="material-icons">delete</i></div>
             </td>
           </tr>
         </tbody>
       </table>
 </div>
+<a class="btn-floating btn-large waves-effect waves-light red" [routerLink]="['new']"><i class="material-icons">add</i></a>

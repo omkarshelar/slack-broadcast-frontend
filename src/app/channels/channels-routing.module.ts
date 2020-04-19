@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path:'new',
     component: ChannelDetailsComponent
+  },
+  {
+    path: 'edit/:channelId',
+    component: ChannelDetailsComponent
   }
 ];
 

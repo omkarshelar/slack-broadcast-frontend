@@ -7,9 +7,12 @@ import { NavbarComponent } from "./navbar/navbar.component";
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ApiAuthService } from './services/api-auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiAuthService, multi: true }
     ],

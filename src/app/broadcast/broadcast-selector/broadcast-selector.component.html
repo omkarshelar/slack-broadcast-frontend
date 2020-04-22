@@ -1,6 +1,6 @@
 <main class="broadcast-wrapper">
     <div class="manage-button">
-        <button class="btn red" [routerLink]="['/channels']"><i class="material-icons left">arrow_back</i>Manage Channels</button>
+        <button class="btn red" [routerLink]="['/channels']"><i class="material-icons left">list</i>Manage Channels</button>
     </div>
     
     <form  *ngIf="allChannels" [formGroup]="messageForm" (ngSubmit)="sendMessage()">

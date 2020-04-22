@@ -1,9 +1,4 @@
 <div class="wrapper">
-
-<div class="refresh-wrapper">
-  <a class="btn waves-effect waves-light red refresh-btn" (click)="getChannels()"><i class="material-icons">refresh</i></a>
-</div>
-
 <div class="table-wrapper">
     <table class="highlight striped responsive-table centered" *ngIf="channels">
         <thead>
@@ -42,7 +37,7 @@
     <ul>
         <li><a class="btn-floating red" [routerLink]="['new']"><i class="material-icons">add</i></a></li>
         <li><a class="btn-floating blue darken-1" [routerLink]="['/broadcast']"><i class="material-icons">message</i></a></li>
-        <li><a class="btn-floating green" (click)="getChannels()"><i class="material-icons">refresh</i></a></li>
+        <li><a class="btn-floating green" (click)="refreshChannels();"><i class="material-icons">refresh</i></a></li>
     </ul>
 </div>
 </div>

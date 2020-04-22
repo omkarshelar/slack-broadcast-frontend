@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ChannelManagerService } from '../services/channel-manager.service';
+import * as M from "materialize-css/dist/js/materialize";
 declare var $;
 @Component({
   selector: 'app-list-channels',
@@ -14,12 +15,6 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
   }
   
   ngAfterViewInit(): void {
-    // Floating Button initialization
-    // document.addEventListener('DOMContentLoaded', function() {
-    //   var elems = document.querySelectorAll('.fixed-action-btn');
-    //   var instance = M.FloatingActionButton.init(elems);
-    // });
-    
     $(document).ready(function(){
       $('.fixed-action-btn').floatingActionButton();
     }); 
@@ -53,5 +48,10 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
       this.channelManager.deleteChannel(channelId);
       this.getChannels();
     }
+  }
+  
+  refreshChannels() {
+    this.getChannels();
+    M.toast({html: 'Your channels reloaded successfully!'})
   }
 }

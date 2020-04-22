@@ -1,4 +1,8 @@
 <main class="broadcast-wrapper">
+    <div class="manage-button">
+        <button class="btn red" [routerLink]="['/channels']"><i class="material-icons left">arrow_back</i>Manage Channels</button>
+    </div>
+    
     <form  *ngIf="allChannels" [formGroup]="messageForm" (ngSubmit)="sendMessage()">
     <div class="channels-selectors">
         <div *ngFor="let channel of allChannels">

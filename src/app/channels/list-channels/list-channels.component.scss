@@ -1,4 +1,4 @@
-.table-wrapper {
+.wrapper {
     margin: 3rem 5rem 0;
 }
 .action-icon {
@@ -18,6 +18,10 @@
 th {
     font-weight: 500;
 }
+.refresh-btn {
+    float: right;
+    display: block;
+}
 @media only screen and (max-width: 992px) {
     tr td {
         width: auto;
@@ -29,7 +33,7 @@ th {
     .webhook-th {
         height: 84px;
     }
-    .table-wrapper {
+    .wrapper {
         margin: 0;
         margin: 3rem 5px;
     }

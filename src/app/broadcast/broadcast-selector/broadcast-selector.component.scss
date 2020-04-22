@@ -1,0 +1,15 @@
+.broadcast-wrapper {
+    margin: 3rem 5rem 0;
+}
+.channels-selectors {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    label {
+        padding: 1rem;
+        color: #000;
+    }
+}
+.broadcast-feedback {
+    margin-top: 2rem;
+}

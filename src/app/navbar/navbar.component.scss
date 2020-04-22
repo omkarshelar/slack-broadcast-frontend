@@ -2,10 +2,17 @@
 	padding-left: 20px;
 }
 .logout {
-	padding: 0 20px;
 	font-style: italic;
 }
-.logout:hover {
-	text-decoration: underline;
-	cursor: pointer;
+
+.navbar-item {
+	margin: 0 10px;
+	outline: none;
+	a:hover {
+		cursor: pointer;
+		text-decoration: underline;
+	}
+	&:last-child {
+		margin-right: 20px;
+	}
 }

@@ -1,0 +1,32 @@
+<main class="broadcast-wrapper">
+    <form  *ngIf="allChannels" [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+    <div class="channels-selectors">
+        <div *ngFor="let channel of allChannels">
+            <label formArrayName="channels">
+                <input type="checkbox" [value]="channel.channelId" (change)="onCheckChange($event)"/>
+                <span>{{channel.channelName}}</span>
+            </label>
+        </div>
+    </div>
+    <div>
+        <div class="input-field">
+          <input id="title" type="text" formControlName="msgTitle">
+          <label for="title">Title</label>
+        </div>
+        <div class="input-field">
+          <textarea id="contents" class="materialize-textarea" formControlName="msgContents"></textarea>
+          <label for="contents">Contents</label>
+        </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" [disabled]="!messageForm.valid">Submit
+        <i class="material-icons right">send</i>
+    </button>
+    </form>
+    <div *ngIf="noChannels">
+        <h5>You have no channels configured. Click <a [routerLink]="['/channels']">here</a> to configure channels.</h5>
+    </div>
+    
+    <div *ngIf="slackResponses" style="broadcast-feedback">
+        <app-broadcast-feedback [slackResponses]="slackResponses"></app-broadcast-feedback>
+    </div>
+</main>

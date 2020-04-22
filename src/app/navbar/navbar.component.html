@@ -5,8 +5,10 @@
     <ul class="right hide-on-med-and-down">
       <li *ngIf="!user"><a (click)="loginRedirect()">Login</a></li>
       <ng-container *ngIf="user">
-        <li>Hi {{user.attributes.name}}!</li>
-        <li class="logout" (click)="logout()">Logout!</li>
+        <li class="navbar-item" [routerLink]="['/broadcast']"><a>Broadcast Messages</a></li>
+        <li class="navbar-item" [routerLink]="['/channels']"><a>Manage Channels</a></li>
+        <li class="navbar-item">Hi {{user.attributes.name}}!</li>
+        <li class="navbar-item logout" (click)="logout()"><a>Logout!</a></li>
       </ng-container>
     </ul>
   </div>

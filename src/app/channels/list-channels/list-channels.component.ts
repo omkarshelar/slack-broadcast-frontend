@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ChannelManagerService } from '../services/channel-manager.service';
-import * as M from 'materialize-css'
-
+declare var $;
 @Component({
   selector: 'app-list-channels',
   templateUrl: './list-channels.component.html',
@@ -16,10 +15,15 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
   
   ngAfterViewInit(): void {
     // Floating Button initialization
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.fixed-action-btn');
-      var instances = M.FloatingActionButton.init(elems);
-    });
+    // document.addEventListener('DOMContentLoaded', function() {
+    //   var elems = document.querySelectorAll('.fixed-action-btn');
+    //   var instance = M.FloatingActionButton.init(elems);
+    // });
+    
+    $(document).ready(function(){
+      $('.fixed-action-btn').floatingActionButton();
+    }); 
+    
   }
 
   ngOnInit() {
@@ -32,11 +36,15 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
       if(response.status === 200) {
         this.channels = response.body['channels'];
         console.log(this.channels);
+        return true;
       }
     })
     .catch((err) => {
-      this.errorMessage = `🤷  ${err.error['message']}`;
+      if(err.error['message']) {
+        this.errorMessage = `🤷  ${err.error['message']}`;
+      }
       this.channels = null;
+      return false;
     });
   }
   

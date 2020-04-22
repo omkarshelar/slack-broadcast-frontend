@@ -1,0 +1,18 @@
+<div *ngIf="slackResponses">
+      <table>
+        <thead>
+          <tr>
+              <th>Slack Channel Name</th>
+              <th>Message Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let response of slackResponses">
+            <td>{{ response.channelName }}</td>
+            <td *ngIf="response.success"><i class="material-icons messageSuccess">check</i></td>
+            <td *ngIf="!response.success"><i class="material-icons messageFailure">clear</i></td>
+          </tr>
+          <tr>
+        </tbody>
+    </table>
+</div>

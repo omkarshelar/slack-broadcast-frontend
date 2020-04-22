@@ -28,7 +28,6 @@ export class ChannelDetailsComponent implements OnInit {
       this.channelId = params.get("channelId");
     });
     if(this.channelId && this.router.url.includes("/edit/")) {
-      // console.log("Edit Mode");
       this.buttonName = "Edit";
       this.logoName = "edit"
       from(this.channelManager.getChannelsArray()).subscribe((channels) => {

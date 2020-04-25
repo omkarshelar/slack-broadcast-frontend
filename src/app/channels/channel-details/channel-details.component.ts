@@ -13,25 +13,24 @@ import { from } from 'rxjs';
 })
 export class ChannelDetailsComponent implements OnInit {
   channelForm: FormGroup;
-  
+
   buttonName: string = "Add";
   logoName: string = "add"
-  channelId:string;
-  channel:channel;
+  channelId: string;
+  channel: channel;
 
   constructor(private channelManager: ChannelManagerService, private router: Router, private location: Location, private activateRoute: ActivatedRoute) {
-    console.log(this.router.url);
   }
 
   ngOnInit() {
     this.activateRoute.paramMap.subscribe(params => {
       this.channelId = params.get("channelId");
     });
-    if(this.channelId && this.router.url.includes("/edit/")) {
+    if (this.channelId && this.router.url.includes("/edit/")) {
       this.buttonName = "Edit";
       this.logoName = "edit"
       from(this.channelManager.getChannelsArray()).subscribe((channels) => {
-        this.channel = channels.find((channel:channel) => channel.channelId === this.channelId);
+        this.channel = channels.find((channel: channel) => channel.channelId === this.channelId);
         this.channelForm.setValue({
           channelName: this.channel.channelName,
           channelWebhook: this.channel.channelWebhook
@@ -43,20 +42,20 @@ export class ChannelDetailsComponent implements OnInit {
       channelWebhook: new FormControl('', Validators.required),
     });
   }
-  
+
   onSubmit() {
-    if(!this.channelId && !this.router.url.includes("/edit/")) {
+    if (!this.channelId && !this.router.url.includes("/edit/")) {
       this.addChannel();
     }
     else {
       this.editChannel()
     }
   }
-  
+
   addChannel() {
     this.channelManager.addChannel(this.channelForm.value.channelName, this.channelForm.value.channelWebhook);
   }
-  
+
   editChannel() {
     const channel = {
       channelId: this.channelId,
@@ -65,7 +64,7 @@ export class ChannelDetailsComponent implements OnInit {
     }
     this.channelManager.editChannel(channel);
   }
-  
+
   goBack() {
     if (window.history.length > 1) {
       this.location.back();

@@ -37,4 +37,8 @@ th {
         margin: 0;
         margin: 3rem 5px;
     }
+    .table-fix-width {
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+    }
 }

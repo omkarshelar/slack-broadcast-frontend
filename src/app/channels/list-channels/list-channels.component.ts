@@ -8,50 +8,49 @@ declare var $;
   styleUrls: ['./list-channels.component.scss']
 })
 export class ListChannelsComponent implements OnInit, AfterViewInit {
-  
+
   channels;
   errorMessage = null;
   constructor(private channelManager: ChannelManagerService) {
   }
-  
+
   ngAfterViewInit(): void {
-    $(document).ready(function(){
+    $(document).ready(function () {
       $('.fixed-action-btn').floatingActionButton();
-    }); 
-    
+    });
+
   }
 
   ngOnInit() {
     this.getChannels();
   }
-  
+
   getChannels() {
     this.channelManager.getChannels()
-    .then((response) => {
-      if(response.status === 200) {
-        this.channels = response.body['channels'];
-        console.log(this.channels);
-        return true;
-      }
-    })
-    .catch((err) => {
-      if(err.error['message']) {
-        this.errorMessage = `🤷  ${err.error['message']}`;
-      }
-      this.channels = null;
-      return false;
-    });
+      .then((response) => {
+        if (response.status === 200) {
+          this.channels = response.body['channels'];
+          return true;
+        }
+      })
+      .catch((err) => {
+        if (err.error['message']) {
+          this.errorMessage = `🤷  ${err.error['message']}`;
+        }
+        this.channels = null;
+        return false;
+      });
   }
-  
+
   deleteChannel(channelId) {
-    if(confirm("Are you sure you want to delete this channel?")) {
+    if (confirm("Are you sure you want to delete this channel?")) {
       this.channelManager.deleteChannel(channelId);
       this.getChannels();
     }
   }
-  
+
   refreshChannels() {
     this.getChannels();
-    M.toast({html: 'Your channels reloaded successfully!'})
+    M.toast({ html: 'Your channels reloaded successfully!' })
   }
 }

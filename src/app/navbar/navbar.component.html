@@ -7,14 +7,20 @@
       <ng-container *ngIf="user">
         <li class="navbar-item" [routerLink]="['/broadcast']"><a>Broadcast Messages</a></li>
         <li class="navbar-item" [routerLink]="['/channels']"><a>Manage Channels</a></li>
-        <li class="navbar-item">Hi {{user.attributes.name}}!</li>
+        <li class="navbar-item name">Hi {{user.attributes.name}}!</li>
         <li class="navbar-item logout" (click)="logout()"><a>Logout!</a></li>
       </ng-container>
     </ul>
   </div>
 </nav>
-<ul class="sidenav" id="mobile-nav">
-  <li><a>Sass</a></li>
-  <li><a>Components</a></li>
-  <li><a>JavaScript</a></li>
+<ul class="sidenav sidenav-close" id="mobile-nav">
+  <li *ngIf="!user"><a (click)="loginRedirect()">Login</a></li>
+  <ng-container *ngIf="user">
+    <li class="navbar-item">Hi {{user.attributes.name}}!</li>
+    <li class="navbar-item" [routerLink]="['/broadcast']"><a>Broadcast
+        Messages</a></li>
+    <li class="navbar-item" [routerLink]="['/channels']"><a>Manage Channels</a></li>
+    <!-- <li class="navbar-item">Hi {{user.attributes.name}}!</li> -->
+    <li class="navbar-item logout" (click)="logout()"><a>Logout!</a></li>
+  </ng-container>
 </ul>

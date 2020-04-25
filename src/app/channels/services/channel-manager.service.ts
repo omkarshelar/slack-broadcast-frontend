@@ -8,30 +8,28 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ChannelManagerService {
-  
+
   channels;
   constructor(private http: HttpClient, private router: Router) {
   }
-  
+
   async getChannelsArray() {
     const response = await this.getChannels();
     this.channels = response.body['channels'];
     return this.channels
   }
-  
+
   getChannels() {
     return this.http.get('https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels', { observe: 'response' }).toPromise();
   }
-  
+
   addChannel(channelName: string, channelWebhook: string) {
     const channelDetails = {
       channelName,
       channelWebhook
     }
-    this.http.post('https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels',channelDetails, { observe: 'response' }).subscribe((response) => {
-      console.log("Logging POST response");
-      console.log(response);
-      if(response.status === 201) {
+    this.http.post('https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels', channelDetails, { observe: 'response' }).subscribe((response) => {
+      if (response.status === 201) {
         this.router.navigate(['/channels']);
       }
       else {
@@ -39,7 +37,7 @@ export class ChannelManagerService {
       }
     })
   }
-  
+
   deleteChannel(channelId: string) {
     const options = {
       body: {
@@ -47,14 +45,14 @@ export class ChannelManagerService {
       },
       observe: 'response' as 'response'
     };
-    
+
     this.http.request('delete', 'https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels', options).subscribe((response) => {
     });
   }
-  
+
   editChannel(newChannel) {
-    this.http.put("https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels", newChannel,{observe: "response"}).subscribe(response => {
-      if(response.status === 200) {
+    this.http.put("https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels", newChannel, { observe: "response" }).subscribe(response => {
+      if (response.status === 200) {
         this.router.navigate(['/channels']);
       }
       else {

@@ -1,19 +1,23 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { AppGuard } from "./app.guard";
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    redirectTo: '/broadcast'
+    loadChildren: './home/home.module#HomeModule'
   },
   {
     path: 'channels',
-    loadChildren: './channels/channels.module#ChannelsModule'
+    loadChildren: './channels/channels.module#ChannelsModule',
+    canLoad: [AppGuard],
+    canActivate: [AppGuard]
   },
   {
-    path:'broadcast',
-    loadChildren: './broadcast/broadcast.module#BroadcastModule'
+    path: 'broadcast',
+    loadChildren: './broadcast/broadcast.module#BroadcastModule',
+    canLoad: [AppGuard],
+    canActivate: [AppGuard]
   }
 ];
 

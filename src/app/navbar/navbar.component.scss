@@ -4,9 +4,11 @@
 .logout {
 	font-style: italic;
 }
+.name {
+	padding: 0 15px;
+}
 
 .navbar-item {
-	margin: 0 10px;
 	outline: none;
 	a:hover {
 		cursor: pointer;
@@ -14,5 +16,14 @@
 	}
 	&:last-child {
 		margin-right: 20px;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	.navbar-item {
+		margin: 0;
+		&:first-child {
+			margin: 0 32px;
+		}
 	}
 }

@@ -14,8 +14,8 @@ const oauth = {
   scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
   // redirectSignIn: 'https://b60bb113c5104bcc8b8aca2f9ba595d3.vfs.cloud9.ap-south-1.amazonaws.com/',
   // redirectSignOut: 'https://b60bb113c5104bcc8b8aca2f9ba595d3.vfs.cloud9.ap-south-1.amazonaws.com/',
-  redirectSignIn: 'https://dev.d3j50p10lghlin.amplifyapp.com/',
-  redirectSignOut: 'https://dev.d3j50p10lghlin.amplifyapp.com/',
+  redirectSignIn: 'http://localhost:4200/',
+  redirectSignOut: 'http://localhost:4200/',
   responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
 }
 

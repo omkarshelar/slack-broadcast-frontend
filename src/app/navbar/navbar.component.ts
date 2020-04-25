@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
   constructor(private auth: AuthService, private ref: ChangeDetectorRef) {
     this.auth.user.subscribe(user => {
       this.user = user;
-      this.ref.detectChanges();
     });
   }
 

@@ -1,0 +1,23 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-slackbroadcast-prod-05632-authRole",
+            "UnauthRoleArn": "arn:aws:iam::190911038733:role/amplify-slackbroadcast-prod-05632-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::190911038733:role/amplify-slackbroadcast-prod-05632-authRole",
+            "Region": "ap-south-1",
+            "DeploymentBucketName": "amplify-slackbroadcast-prod-05632-deployment",
+            "UnauthRoleName": "amplify-slackbroadcast-prod-05632-unauthRole",
+            "StackName": "amplify-slackbroadcast-prod-05632",
+            "StackId": "arn:aws:cloudformation:ap-south-1:190911038733:stack/amplify-slackbroadcast-prod-05632/b6559660-872a-11ea-81a1-02f99c428a3a",
+            "AmplifyAppId": "d1gg6n4xiamp80"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d1gg6n4xiamp80",
+                    "type": "manual"
+                }
+            }
+        }
+    }
+}

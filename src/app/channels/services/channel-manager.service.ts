@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { channel } from '../channels-interface';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ChannelManagerService {
   }
 
   getChannels() {
-    return this.http.get('https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels', { observe: 'response' }).toPromise();
+    return this.http.get(`${environment.api_uri}/channels`, { observe: 'response' }).toPromise();
   }
 
   addChannel(channelName: string, channelWebhook: string) {
@@ -28,7 +29,7 @@ export class ChannelManagerService {
       channelName,
       channelWebhook
     }
-    this.http.post('https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels', channelDetails, { observe: 'response' }).subscribe((response) => {
+    this.http.post(`${environment.api_uri}/channels`, channelDetails, { observe: 'response' }).subscribe((response) => {
       if (response.status === 201) {
         this.router.navigate(['/channels']);
       }
@@ -46,12 +47,12 @@ export class ChannelManagerService {
       observe: 'response' as 'response'
     };
 
-    this.http.request('delete', 'https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels', options).subscribe((response) => {
+    this.http.request('delete', `${environment.api_uri}/channels`, options).subscribe((response) => {
     });
   }
 
   editChannel(newChannel) {
-    this.http.put("https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/channels", newChannel, { observe: "response" }).subscribe(response => {
+    this.http.put(`${environment.api_uri}/channels`, newChannel, { observe: "response" }).subscribe(response => {
       if (response.status === 200) {
         this.router.navigate(['/channels']);
       }

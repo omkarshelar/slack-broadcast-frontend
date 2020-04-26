@@ -1,4 +1,4 @@
-<main class="broadcast-wrapper">
+<main class="broadcast-wrapper" *ngIf="allChannels">
     <div class="manage-button">
         <button class="btn red" [routerLink]="['/channels']"><i class="material-icons left">list</i>Manage
             Channels</button>
@@ -22,7 +22,7 @@
                 <label for="contents">Contents</label>
             </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit" [disabled]="!messageForm.valid">Submit
+        <button class="btn waves-effect waves-light red" type="submit" [disabled]="!messageForm.valid">Submit
             <i class="material-icons right">send</i>
         </button>
     </form>

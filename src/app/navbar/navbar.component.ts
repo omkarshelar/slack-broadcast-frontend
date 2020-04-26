@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../auth.service"
 import { Auth } from "aws-amplify";
-import { ChangeDetectorRef } from '@angular/core'
 import { environment } from "../../environments/environment";
 
 declare var $: any;
@@ -13,7 +12,7 @@ declare var $: any;
 export class NavbarComponent implements OnInit {
   user = null;
 
-  constructor(private auth: AuthService, private ref: ChangeDetectorRef) {
+  constructor(private auth: AuthService) {
     this.auth.user.subscribe(user => {
       this.user = user;
     });

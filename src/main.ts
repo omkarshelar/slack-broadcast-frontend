@@ -12,10 +12,10 @@ Amplify.configure(awsconfig);
 const oauth = {
   domain: 'omkarshelar-sso.auth.ap-south-1.amazoncognito.com',
   scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-  // redirectSignIn: 'https://b60bb113c5104bcc8b8aca2f9ba595d3.vfs.cloud9.ap-south-1.amazonaws.com/',
-  // redirectSignOut: 'https://b60bb113c5104bcc8b8aca2f9ba595d3.vfs.cloud9.ap-south-1.amazonaws.com/',
-  redirectSignIn: 'http://localhost:4200/',
-  redirectSignOut: 'http://localhost:4200/',
+  redirectSignIn: 'https://prod.d1gg6n4xiamp80.amplifyapp.com/',
+  redirectSignOut: 'https://prod.d1gg6n4xiamp80.amplifyapp.com/',
+  // redirectSignIn: 'http://localhost:4200/',
+  // redirectSignOut: 'http://localhost:4200/',
   responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
 }
 

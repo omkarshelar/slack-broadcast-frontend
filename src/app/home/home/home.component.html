@@ -1,3 +1,20 @@
 <div class="container">
-	Hello World!
+	<div class="valign-wrapper home-container">
+		<ng-container *ngIf="user">
+			<h5>Hi, {{ user.attributes.name }}</h5>
+			<div>
+				<a class="waves-effect waves-light btn red" [routerLink]="['channels']"><i
+						class="material-icons left">list</i>Manage
+					Channels</a>
+			</div>
+			<div>
+				<a class="waves-effect waves-light btn red" [routerLink]="['/broadcast']"><i
+						class="material-icons left">announcement</i>Broadcast</a>
+			</div>
+		</ng-container>
+		<ng-container *ngIf="!user">
+			<a class="waves-effect waves-light btn" (click)="loginRedirect()"><i
+					class="material-icons left">person</i>Login</a>
+		</ng-container>
+	</div>
 </div>

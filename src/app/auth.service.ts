@@ -9,7 +9,7 @@ import { NgZone } from "@angular/core";
 export class AuthService {
   user = new Subject<any>();
   constructor(private ngZone: NgZone) {
-    this.getUser();
+    this.ngZone.run(() => this.getUser());
     const listener = (data) => {
       switch (data.payload.event) {
         case 'signIn':

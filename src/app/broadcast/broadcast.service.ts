@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +8,9 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 export class BroadcastService {
 
   constructor(private http: HttpClient) { }
-  
-  broadcastMessage(channels: any, title: string, contents: string):Promise<HttpResponse<any>> {
-    return this.http.post("https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api/broadcast", {
+
+  broadcastMessage(channels: any, title: string, contents: string): Promise<HttpResponse<any>> {
+    return this.http.post(`${environment.api_uri}/broadcast`, {
       channels,
       message: {
         blocks: [
@@ -29,6 +30,6 @@ export class BroadcastService {
           }
         ]
       }
-    }, {observe:"response"}).toPromise();
+    }, { observe: "response" }).toPromise();
   }
 }

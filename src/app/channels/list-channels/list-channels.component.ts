@@ -9,7 +9,7 @@ declare var $;
 })
 export class ListChannelsComponent implements OnInit, AfterViewInit {
 
-  channels;
+  channels = [];
   errorMessage = null;
   constructor(private channelManager: ChannelManagerService) {
   }
@@ -34,9 +34,6 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
         }
       })
       .catch((err) => {
-        if (err.error['message']) {
-          this.errorMessage = `🤷  ${err.error['message']}`;
-        }
         this.channels = null;
         return false;
       });

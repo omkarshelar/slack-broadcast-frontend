@@ -1,5 +1,5 @@
-<main class="broadcast-wrapper" *ngIf="allChannels">
-    <div class="manage-button">
+<main class="broadcast-wrapper">
+    <div class="manage-button" *ngIf="allChannels">
         <button class="btn red" [routerLink]="['/channels']"><i class="material-icons left">list</i>Manage
             Channels</button>
     </div>
@@ -27,7 +27,8 @@
         </button>
     </form>
     <div *ngIf="noChannels">
-        <h5>You have no channels configured. Click <a [routerLink]="['/channels']">here</a> to configure channels.</h5>
+        <h5>🤷 You have no channels configured. Click <a [routerLink]="['/channels']">here</a> to configure channels.
+        </h5>
     </div>
     <div *ngIf="slackResponses" class="broadcast-feedback">
         <app-broadcast-feedback [slackResponses]="slackResponses"></app-broadcast-feedback>

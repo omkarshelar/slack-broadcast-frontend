@@ -26,9 +26,11 @@
     </table>
   </div>
 
-  <div *ngIf="!channels && errorMessage" class="container">
+  <div *ngIf="!channels" class="container">
     <h5>
-      {{ errorMessage }}
+      🤷 No channels found for the you. Please add a channel.
+      <br>
+      Click <a [routerLink]="['/channels', 'new']">here</a> to add channels.
     </h5>
   </div>
 

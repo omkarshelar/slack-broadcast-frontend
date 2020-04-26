@@ -27,10 +27,14 @@ export class BroadcastSelectorComponent implements OnInit {
       if (response.status === 200) {
         this.allChannels = response.body['channels'];
       }
-      else if (response.status === 404) {
-        this.allChannels = null;
-        this.noChannels = true;
-      }
+      // else if (response.status === 404) {
+      //   this.allChannels = null;
+      //   this.noChannels = true;
+      // }
+    }).catch(err => {
+      console.error(err);
+      this.allChannels = null;
+      this.noChannels = true;
     });
   }
 
@@ -80,7 +84,8 @@ export class BroadcastSelectorComponent implements OnInit {
       else {
         this.slackResponses = null;
       }
-    }).catch((response) => {
+    }).catch((err) => {
+      console.log(err);
     });
   }
 }

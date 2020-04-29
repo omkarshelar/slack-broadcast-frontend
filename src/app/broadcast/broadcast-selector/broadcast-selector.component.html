@@ -26,11 +26,11 @@
             <i class="material-icons right">send</i>
         </button>
     </form>
-    <div *ngIf="noChannels">
-        <h5>🤷 You have no channels configured. Click <a [routerLink]="['/channels']">here</a> to configure channels.
+    <div *ngIf="!allChannels && errorMessage" class="container">
+        <h5>🤷 {{ errorMessage }}
         </h5>
     </div>
-    <div *ngIf="slackResponses" class="broadcast-feedback">
+    <div *ngIf=" slackResponses" class="broadcast-feedback">
         <app-broadcast-feedback [slackResponses]="slackResponses"></app-broadcast-feedback>
     </div>
 </main>

@@ -13,10 +13,10 @@ const oauth = {
   // domain: 'omkarshelar-sso.auth.ap-south-1.amazoncognito.com',
   domain: 'auth.omkarshelar.dev',
   scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-  redirectSignIn: 'https://slack.omkarshelar.dev/',
-  redirectSignOut: 'https://slack.omkarshelar.dev/',
-  // redirectSignIn: 'http://localhost:4200/',
-  // redirectSignOut: 'http://localhost:4200/',
+  // redirectSignIn: 'https://slack.omkarshelar.dev/',
+  // redirectSignOut: 'https://slack.omkarshelar.dev/',
+  redirectSignIn: 'http://localhost:4200/',
+  redirectSignOut: 'http://localhost:4200/',
   responseType: 'code' // or 'token', note that REFRESH token will only be generated when the responseType is code
 }
 

@@ -1,48 +1,48 @@
-<div class="wrapper">
-  <div class="table-wrapper">
-    <table class="highlight striped responsive-table centered" *ngIf="channels">
-      <thead>
-        <tr>
-          <th>Sr. No.</th>
-          <th>Channel Name</th>
-          <th class="webhook-th">Channel Webhook</th>
-          <th colspan=2>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let channel of channels;let i = index">
-          <td>{{ i+1 }}</td>
-          <td>{{ channel.channelName }}</td>
-          <td class="table-fix-width">{{ channel.channelWebhook }}</td>
-          <td>
-            <div class="action-icon" title="Edit" [routerLink]="['edit', channel.channelId]"><i
-                class="material-icons">edit</i></div>
-          </td>
-          <td (click)="deleteChannel(channel.channelId)">
-            <div class="action-icon" title="Delete"><i class="material-icons">delete</i></div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div>
+  <div class="wrapper">
+    <div class="table-wrapper" *ngIf="channels">
+      <table class="highlight striped responsive-table centered">
+        <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Channel Name</th>
+            <th class="webhook-th">Channel Webhook</th>
+            <th colspan=2>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let channel of channels;let i = index">
+            <td>{{ i+1 }}</td>
+            <td>{{ channel.channelName }}</td>
+            <td class="table-fix-width">{{ channel.channelWebhook }}</td>
+            <td>
+              <div class="action-icon" title="Edit" [routerLink]="['edit', channel.channelId]"><i
+                  class="material-icons">edit</i></div>
+            </td>
+            <td (click)="deleteChannel(channel.channelId)">
+              <div class="action-icon" title="Delete"><i class="material-icons">delete</i></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <div *ngIf="!channels" class="container">
-    <h5>
-      🤷 No channels found for the you. Please add a channel.
-      <br>
-      Click <a [routerLink]="['/channels', 'new']">here</a> to add channels.
-    </h5>
-  </div>
+    <div *ngIf="!channels && errorMessage" class="container">
+      <h5>
+        🤷 {{ errorMessage }}
+      </h5>
+    </div>
 
-  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light red" [ngClass]="{'pulse':!channels}"><i
-        class="material-icons">view_headline</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating red" [routerLink]="['new']"><i class="material-icons">add</i></a></li>
-      <li><a class="btn-floating blue darken-1" [routerLink]="['/broadcast']"><i
-            class="material-icons">announcement</i></a></li>
-      <li><a class="btn-floating green" (click)="refreshChannels();"><i class="material-icons">refresh</i></a></li>
-    </ul>
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large waves-effect waves-light red" [ngClass]="{'pulse':!channels}"><i
+          class="material-icons">view_headline</i>
+      </a>
+      <ul>
+        <li><a class="btn-floating red" [routerLink]="['new']"><i class="material-icons">add</i></a></li>
+        <li><a class="btn-floating blue darken-1" [routerLink]="['/broadcast']"><i
+              class="material-icons">announcement</i></a></li>
+        <li><a class="btn-floating green" (click)="refreshChannels();"><i class="material-icons">refresh</i></a></li>
+      </ul>
+    </div>
   </div>
 </div>

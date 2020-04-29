@@ -14,11 +14,16 @@ html {
 
 @import '~ngx-toastr/toastr';
 
-// @import "~@aws-amplify/ui/src/Theme.css";
-// .amplify-block {
-//   @import "~@aws-amplify/ui/src/Angular";
+.loader-wrapper {
+  height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+}
 
-//   .amplify-container {
-//     padding-bottom: 2em;
-//   }
-// }
+.overlay {
+	position: absolute;
+	background-color: rgba(255, 255, 255, 0.5);
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+}

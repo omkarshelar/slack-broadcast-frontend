@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChannelManagerService } from 'src/app/channels/services/channel-manager.service';
 import { FormGroup, Validators, FormControl, FormArray, FormBuilder } from '@angular/forms';
 import { BroadcastService } from '../broadcast.service';
+import { LoadingSpinnerService } from "../../spinner/loading-spinner.service";
 import { HttpResponse } from '@angular/common/http';
 
 @Component({
@@ -11,11 +12,11 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class BroadcastSelectorComponent implements OnInit {
   allChannels;
-  noChannels = false;
+  errorMessage;
   messageForm: FormGroup;
   channels = [];
   slackResponses = null;
-  constructor(private channelManager: ChannelManagerService, private formBuilder: FormBuilder, private broadcastService: BroadcastService) { }
+  constructor(private channelManager: ChannelManagerService, private formBuilder: FormBuilder, private broadcastService: BroadcastService, private spinner: LoadingSpinnerService) { }
 
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
@@ -23,19 +24,24 @@ export class BroadcastSelectorComponent implements OnInit {
       msgTitle: new FormControl('', Validators.required),
       msgContents: new FormControl('', Validators.required)
     });
-    this.channelManager.getChannels().then((response) => {
-      if (response.status === 200) {
-        this.allChannels = response.body['channels'];
-      }
-      // else if (response.status === 404) {
-      //   this.allChannels = null;
-      //   this.noChannels = true;
-      // }
-    }).catch(err => {
-      console.error(err);
-      this.allChannels = null;
-      this.noChannels = true;
-    });
+    this.spinner.showLoader();
+    this.channelManager.getChannels()
+      .then((response) => {
+        if (response.status === 200) {
+          this.allChannels = response.body['channels'];
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        this.allChannels = null;
+        if (err['error']['message']) {
+          this.errorMessage = err['error']['message'];
+        }
+        else {
+          this.errorMessage = "An error occured in the app. We are working on it. Please try again later.";
+        }
+      })
+      .finally(() => this.spinner.hideLoader());
   }
 
   onCheckChange(event) {
@@ -72,12 +78,6 @@ export class BroadcastSelectorComponent implements OnInit {
   sendMessage() {
     this.slackResponses = null;
     this.broadcastService.broadcastMessage(this.messageForm.value.channels, this.messageForm.value.msgTitle, this.messageForm.value.msgContents).then((response: HttpResponse<any>) => {
-      // if(response.status === 207 || response.status === 200) {
-      //   this.slackResponses = response.body['slackResponses'];
-      // }
-      // else {
-      //     this.slackResponses = null;
-      // }
       if (response.body['slackResponses']) {
         this.slackResponses = response.body['slackResponses'];
       }

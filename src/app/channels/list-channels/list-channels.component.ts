@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ChannelManagerService } from '../services/channel-manager.service';
+import { LoadingSpinnerService } from "../../spinner/loading-spinner.service";
 import * as M from "materialize-css/dist/js/materialize";
+import { HttpResponse } from '@angular/common/http';
 declare var $;
 @Component({
   selector: 'app-list-channels',
@@ -9,9 +11,9 @@ declare var $;
 })
 export class ListChannelsComponent implements OnInit, AfterViewInit {
 
-  channels = [];
+  channels;
   errorMessage = null;
-  constructor(private channelManager: ChannelManagerService) {
+  constructor(private channelManager: ChannelManagerService, private spinner: LoadingSpinnerService) {
   }
 
   ngAfterViewInit(): void {
@@ -22,6 +24,7 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.spinner.showLoader();
     this.getChannels();
   }
 
@@ -30,13 +33,18 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
       .then((response) => {
         if (response.status === 200) {
           this.channels = response.body['channels'];
-          return true;
         }
       })
-      .catch((err) => {
+      .catch((err: HttpResponse<any>) => {
         this.channels = null;
-        return false;
-      });
+        if (err['error']['message']) {
+          this.errorMessage = err['error']['message'];
+        }
+        else {
+          this.errorMessage = "An error occured in the app. We are working on it. Please try again later.";
+        }
+      })
+      .finally(() => this.spinner.hideLoader());
   }
 
   deleteChannel(channelId) {
@@ -48,6 +56,6 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
 
   refreshChannels() {
     this.getChannels();
-    M.toast({ html: 'Your channels reloaded successfully!' })
+    M.toast({ html: 'Your channels reloaded successfully!' });
   }
 }

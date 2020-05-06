@@ -1,15 +1,15 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, async, inject } from "@angular/core/testing";
 
-import { AppGuard } from './app.guard';
+import { AppGuard } from "./app.guard";
 
-describe('AppGuard', () => {
+describe("AppGuard", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AppGuard]
+      providers: [AppGuard],
     });
   });
 
-  it('should ...', inject([AppGuard], (guard: AppGuard) => {
+  it("should ...", inject([AppGuard], (guard: AppGuard) => {
     expect(guard).toBeTruthy();
   }));
 });

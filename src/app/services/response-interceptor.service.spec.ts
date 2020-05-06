@@ -1,12 +1,14 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { ResponseInterceptorService } from './response-interceptor.service';
+import { ResponseInterceptorService } from "./response-interceptor.service";
 
-describe('ResponseInterceptorService', () => {
+describe("ResponseInterceptorService", () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: ResponseInterceptorService = TestBed.get(ResponseInterceptorService);
+  it("should be created", () => {
+    const service: ResponseInterceptorService = TestBed.get(
+      ResponseInterceptorService
+    );
     expect(service).toBeTruthy();
   });
 });

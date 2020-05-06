@@ -4,5 +4,5 @@ export const environment = {
   redirect_uri: "https://slack.omkarshelar.dev/",
   // oauth_uri: "https://omkarshelar-sso.auth.ap-south-1.amazoncognito.com",
   oauth_uri: "https://auth.omkarshelar.dev",
-  api_uri: "https://slack-api.omkarshelar.dev/prod"
+  api_uri: "https://slack-api.omkarshelar.dev/prod",
 };

@@ -1,67 +1,75 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ChannelManagerService } from '../services/channel-manager.service';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { channel } from '../channels-interface'
-import { from } from 'rxjs';
+import { Component, OnInit, AfterViewInit } from "@angular/core";
+import { ChannelManagerService } from "../services/channel-manager.service";
+import { FormGroup, Validators, FormControl } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
+import { channel } from "../channels-interface";
+import { from } from "rxjs";
 
 @Component({
-  selector: 'app-channel-details',
-  templateUrl: './channel-details.component.html',
-  styleUrls: ['./channel-details.component.scss']
+  selector: "app-channel-details",
+  templateUrl: "./channel-details.component.html",
+  styleUrls: ["./channel-details.component.scss"],
 })
 export class ChannelDetailsComponent implements OnInit {
   channelForm: FormGroup;
 
   buttonName: string = "Add";
-  logoName: string = "add"
+  logoName: string = "add";
   channelId: string;
   channel: channel;
 
-  constructor(private channelManager: ChannelManagerService, private router: Router, private location: Location, private activateRoute: ActivatedRoute) {
-  }
+  constructor(
+    private channelManager: ChannelManagerService,
+    private router: Router,
+    private location: Location,
+    private activateRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.activateRoute.paramMap.subscribe(params => {
+    this.activateRoute.paramMap.subscribe((params) => {
       this.channelId = params.get("channelId");
     });
     if (this.channelId && this.router.url.includes("/edit/")) {
       this.buttonName = "Edit";
-      this.logoName = "edit"
+      this.logoName = "edit";
       from(this.channelManager.getChannelsArray()).subscribe((channels) => {
-        this.channel = channels.find((channel: channel) => channel.channelId === this.channelId);
+        this.channel = channels.find(
+          (channel: channel) => channel.channelId === this.channelId
+        );
         this.channelForm.setValue({
           channelName: this.channel.channelName,
-          channelWebhook: this.channel.channelWebhook
+          channelWebhook: this.channel.channelWebhook,
         });
-      })
+      });
     }
     this.channelForm = new FormGroup({
-      channelName: new FormControl('', Validators.required),
-      channelWebhook: new FormControl('', Validators.required),
+      channelName: new FormControl("", Validators.required),
+      channelWebhook: new FormControl("", Validators.required),
     });
   }
 
   onSubmit() {
     if (!this.channelId && !this.router.url.includes("/edit/")) {
       this.addChannel();
-    }
-    else {
-      this.editChannel()
+    } else {
+      this.editChannel();
     }
   }
 
   addChannel() {
-    this.channelManager.addChannel(this.channelForm.value.channelName, this.channelForm.value.channelWebhook);
+    this.channelManager.addChannel(
+      this.channelForm.value.channelName,
+      this.channelForm.value.channelWebhook
+    );
   }
 
   editChannel() {
     const channel = {
       channelId: this.channelId,
       channelWebhook: this.channelForm.value.channelWebhook,
-      channelName: this.channelForm.value.channelName
-    }
+      channelName: this.channelForm.value.channelName,
+    };
     this.channelManager.editChannel(channel);
   }
 
@@ -69,7 +77,7 @@ export class ChannelDetailsComponent implements OnInit {
     if (window.history.length > 1) {
       this.location.back();
     } else {
-      this.router.navigate(['/channels']);
+      this.router.navigate(["/channels"]);
     }
   }
 }

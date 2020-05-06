@@ -9,7 +9,7 @@ export const environment = {
   redirect_uri: "http://localhost:4200/",
   oauth_uri: "https://auth.omkarshelar.dev",
   // api_uri: "https://o3g6bp4a3b.execute-api.ap-south-1.amazonaws.com/api"
-  api_uri: "https://slack-api.omkarshelar.dev/dev"
+  api_uri: "http://localhost:8000",
 };
 
 /*

@@ -4,25 +4,25 @@ import { AppGuard } from "./app.guard";
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: './home/home.module#HomeModule'
+    path: "",
+    loadChildren: "./home/home.module#HomeModule",
   },
   {
-    path: 'channels',
-    loadChildren: './channels/channels.module#ChannelsModule',
+    path: "channels",
+    loadChildren: "./channels/channels.module#ChannelsModule",
     canLoad: [AppGuard],
-    canActivate: [AppGuard]
+    canActivate: [AppGuard],
   },
   {
-    path: 'broadcast',
-    loadChildren: './broadcast/broadcast.module#BroadcastModule',
+    path: "broadcast",
+    loadChildren: "./broadcast/broadcast.module#BroadcastModule",
     canLoad: [AppGuard],
-    canActivate: [AppGuard]
-  }
+    canActivate: [AppGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

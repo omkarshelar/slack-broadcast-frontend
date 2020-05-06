@@ -1,11 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { ChannelManagerService } from './channel-manager.service';
+import { ChannelManagerService } from "./channel-manager.service";
 
-describe('ChannelManagerService', () => {
+describe("ChannelManagerService", () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
+  it("should be created", () => {
     const service: ChannelManagerService = TestBed.get(ChannelManagerService);
     expect(service).toBeTruthy();
   });

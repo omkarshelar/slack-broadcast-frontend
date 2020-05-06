@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthService } from "../auth.service"
+import { AuthService } from "../auth.service";
 import { Auth } from "aws-amplify";
 import { environment } from "../../environments/environment";
 
@@ -7,13 +7,13 @@ declare var $: any;
 @Component({
   selector: "app-navbar",
   templateUrl: "./navbar.component.html",
-  styleUrls: ["./navbar.component.scss"]
+  styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
   user = null;
 
   constructor(private auth: AuthService) {
-    this.auth.user.subscribe(user => {
+    this.auth.user.subscribe((user) => {
       this.user = user;
     });
   }
@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     Auth.signOut()
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
   }
 }

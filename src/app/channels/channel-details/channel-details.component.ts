@@ -49,6 +49,10 @@ export class ChannelDetailsComponent implements OnInit {
     });
   }
 
+  /**
+   * Decide if use operation is to edit or add and perform the relevant operation.
+   * It is used because this component is reused for edit and add operation due to similarities in the interface.
+   */
   onSubmit() {
     if (!this.channelId && !this.router.url.includes("/edit/")) {
       this.addChannel();
@@ -56,7 +60,10 @@ export class ChannelDetailsComponent implements OnInit {
       this.editChannel();
     }
   }
-
+  /**
+   * Wrapper to invoke ChannelManagerService.addChannel().
+   * Gets the form value to call the function.
+   */
   addChannel() {
     this.channelManager.addChannel(
       this.channelForm.value.channelName,
@@ -64,6 +71,9 @@ export class ChannelDetailsComponent implements OnInit {
     );
   }
 
+  /**
+   * Wrapper to invoke ChannelManagerService.editChannel()
+   */
   editChannel() {
     const channel = {
       channelId: this.channelId,
@@ -73,6 +83,9 @@ export class ChannelDetailsComponent implements OnInit {
     this.channelManager.editChannel(channel);
   }
 
+  /**
+   * If back exists, go back. Else go to /channels route.
+   */
   goBack() {
     if (window.history.length > 1) {
       this.location.back();

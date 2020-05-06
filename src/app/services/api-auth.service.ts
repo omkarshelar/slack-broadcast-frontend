@@ -15,6 +15,14 @@ import "rxjs/add/operator/mergeMap";
 })
 export class ApiAuthService implements HttpInterceptor {
   constructor() {}
+
+  /**
+   * Intercept each request and add Authorization header.
+   * This helps the API authenticate the current user.
+   * @param  {HttpRequest<any>} req
+   * @param  {HttpHandler} next
+   * @returns Observable
+   */
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -30,6 +38,9 @@ export class ApiAuthService implements HttpInterceptor {
     });
   }
 
+  /**
+   * Get the logged in user's ID token from Amplify.
+   */
   getIDToken() {
     return Observable.fromPromise(Auth.currentSession());
   }

@@ -11,19 +11,30 @@ import { environment } from "../../../environments/environment";
 export class ChannelManagerService {
   channels;
   constructor(private http: HttpClient, private router: Router) {}
-
+  /**
+   * Get array of channels.
+   * Helper functions so the caller does not have to deal with Promises.
+   */
   async getChannelsArray() {
     const response = await this.getChannels();
     this.channels = response.body["channels"];
     return this.channels;
   }
-
+  /**
+   * Gets the channels by calling the API.
+   * @returns Promise
+   */
   getChannels(): Promise<any> {
     return this.http
       .get(`${environment.api_uri}/channels`, { observe: "response" })
       .toPromise();
   }
-
+  /**
+   * Add new channel by calling APIs.
+   * Note calling this function will also return the user to /channels route.
+   * @param  {string} channelName
+   * @param  {string} channelWebhook
+   */
   addChannel(channelName: string, channelWebhook: string) {
     const channelDetails = {
       channelName,
@@ -41,7 +52,11 @@ export class ChannelManagerService {
         }
       });
   }
-
+  /**
+   * Delete the channel by channelID.
+   * @param  {string} channelId
+   * @returns Promise
+   */
   deleteChannel(channelId: string): Promise<any> {
     const options = {
       body: {
@@ -54,7 +69,10 @@ export class ChannelManagerService {
       .request("delete", `${environment.api_uri}/channels`, options)
       .toPromise();
   }
-
+  /**
+   * Edit an existing channel.
+   * @param  {} newChannel
+   */
   editChannel(newChannel) {
     this.http
       .put(`${environment.api_uri}/channels`, newChannel, {

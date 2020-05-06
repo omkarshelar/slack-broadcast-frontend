@@ -8,6 +8,14 @@ import { environment } from "../../environments/environment";
 export class BroadcastService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * Send the channel object, title, contents.
+   * This will call API to broadcast messages to Slack channels.
+   * @param  {any} channels
+   * @param  {string} title
+   * @param  {string} contents
+   * @returns Promise
+   */
   broadcastMessage(
     channels: any,
     title: string,

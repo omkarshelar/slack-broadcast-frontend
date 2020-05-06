@@ -25,12 +25,20 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
       $(".fixed-action-btn").floatingActionButton();
     });
   }
-
+  /**
+   * Show spinner while channels are loaded.
+   * The spinner is automatically hidden when channels array is not null.
+   * Refer the template for logic.
+   */
   ngOnInit() {
     this.spinner.showLoader();
     this.getChannels();
   }
 
+  /**
+   * Wrapper around the ChannelManagerService.getChannels().
+   * For error handling and changing the DOM.
+   */
   getChannels() {
     this.channelManager
       .getChannels()
@@ -50,7 +58,11 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
       })
       .finally(() => this.spinner.hideLoader());
   }
-
+  /**
+   * Wrapper around ChannelManagerService.deleteChannel().
+   * Error handling and DOm manipulation added.
+   * @param  {any} channelId
+   */
   deleteChannel(channelId) {
     if (confirm("Are you sure you want to delete this channel?")) {
       this.channelManager
@@ -69,7 +81,10 @@ export class ListChannelsComponent implements OnInit, AfterViewInit {
         });
     }
   }
-
+  /**
+   * Refresh channels on user request.
+   * This also shows a materilize toast.
+   */
   refreshChannels() {
     this.getChannels();
     M.toast({ html: "Your channels reloaded successfully!" });

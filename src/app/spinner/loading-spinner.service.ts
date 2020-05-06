@@ -7,6 +7,10 @@ export class LoadingSpinnerService {
   loader = new Subject<boolean>();
   constructor() {}
 
+  /**
+   * Returns the subject reference for the component to subscribe to.
+   * @returns Subject
+   */
   getLoader(): Subject<boolean> {
     return this.loader;
   }

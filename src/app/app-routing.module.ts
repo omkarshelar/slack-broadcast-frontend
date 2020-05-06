@@ -10,13 +10,13 @@ const routes: Routes = [
   {
     path: "channels",
     loadChildren: "./channels/channels.module#ChannelsModule",
-    canLoad: [AppGuard],
+    canLoad: [AppGuard], // Use this for lazy loading.
     canActivate: [AppGuard],
   },
   {
     path: "broadcast",
     loadChildren: "./broadcast/broadcast.module#BroadcastModule",
-    canLoad: [AppGuard],
+    canLoad: [AppGuard], // Use this for lazy loading.
     canActivate: [AppGuard],
   },
 ];

@@ -16,6 +16,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * Redirect user to SSO login.
+   */
   loginRedirect() {
     const URL = `${environment.oauth_uri}/login?response_type=code&client_id=${environment.client_id}&redirect_uri=${environment.redirect_uri}`;
     window.location.assign(URL);

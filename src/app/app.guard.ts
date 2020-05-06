@@ -17,6 +17,14 @@ import { environment } from "../environments/environment";
   providedIn: "root",
 })
 export class AppGuard implements CanActivate, CanLoad {
+  /**
+   * Authenticate the user using Amplify.
+   * Returns true if user is authenticated.
+   * If user is not authenticated, go to SSO login.
+   * @param  {ActivatedRouteSnapshot} next
+   * @param  {RouterStateSnapshot} state
+   * @returns Boolean
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

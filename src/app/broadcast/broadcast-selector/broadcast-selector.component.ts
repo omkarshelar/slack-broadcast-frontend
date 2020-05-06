@@ -29,6 +29,10 @@ export class BroadcastSelectorComponent implements OnInit {
     private spinner: LoadingSpinnerService
   ) {}
 
+  /**
+   * Initialize the form.
+   * Get channels and handle errors.
+   */
   ngOnInit() {
     this.messageForm = this.formBuilder.group({
       channels: new FormArray([], Validators.required),
@@ -56,6 +60,11 @@ export class BroadcastSelectorComponent implements OnInit {
       .finally(() => this.spinner.hideLoader());
   }
 
+  /**
+   * Helper function to track the checkboxes and add the values to message form.
+   * TODO : Find a better way to handle this.
+   * @param  {} event
+   */
   onCheckChange(event) {
     const formArray: FormArray = this.messageForm.get("channels") as FormArray;
 
@@ -64,7 +73,7 @@ export class BroadcastSelectorComponent implements OnInit {
       // Add a new control in the arrayForm
       formArray.push(new FormControl(event.target.value));
     } else {
-    /* unselected */
+      /* unselected */
       // find the unselected element
       let i: number = 0;
 
@@ -86,6 +95,10 @@ export class BroadcastSelectorComponent implements OnInit {
     });
   }
 
+  /**
+   * Get values from the form.
+   * Call the broadcaster service to broadcast messages.
+   */
   sendMessage() {
     this.slackResponses = null;
     this.broadcastService

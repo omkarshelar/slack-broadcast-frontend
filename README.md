@@ -18,7 +18,7 @@ Lambda Code : https://github.com/omkarshelar/slack-broadcast-API
 
 #### Architectural Diagram :
 
-![Slack Broadcast Architecture](/docs/slack-broadcast-arch-transparent.svg "Slack Broadcast Architecture")
+![Slack Broadcast Architecture](slack-broadcast-arch-transparent.svg "Slack Broadcast Architecture")
 
 
 #### Application Features :

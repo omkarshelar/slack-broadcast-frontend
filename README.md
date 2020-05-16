@@ -1,27 +1,37 @@
-# SlackBroadcast
+# Slack Broadcast Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
+Web Link : https://slack.omkarshelar.dev/
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+**The application provides management of the users' Slack Channels and enables them to broadcast the same message to multiple Slack Channels using slack webhooks.**
 
-## Code scaffolding
+---
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### API Docs :
+https://documenter.getpostman.com/view/3370668/SzmcbzVN
 
-## Build
+#### GitHub Links : 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Angular Frontend : (This Repo) https://github.com/omkarshelar/slack-broadcast-frontend
 
-## Running unit tests
+Lambda Code : https://github.com/omkarshelar/slack-broadcast-API
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+#### Architectural Diagram :
 
-## Running end-to-end tests
+![Slack Broadcast Architecture](/docs/slack-broadcast-arch-transparent.svg "Slack Broadcast Architecture")
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+#### Application Features :
+* Single Sign On using OAuth.
+* Verification of user email.
+* Completely Serverless deployment.
+* Angular application is a Progressive Web Application.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+#### What I learned from the Project :
+* Implementing OAuth using Authorization Code Grant flow.
+* Using AWS Amplify.
+* Using Angular HTTP interceptors.
+* Deploying code to AWS Lambda using [AWS Chalice](https://github.com/aws/chalice).
+* Designing and Querying DynamoDB tables.
+
+---
